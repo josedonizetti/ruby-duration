@@ -6,9 +6,14 @@ class Duration
     total
   end
 
-  def self.set(seconds)
-    return Duration.new(0) unless seconds.respond_to?(:to_i)
-    Duration.new(seconds.to_i)
+  def self.set(args)
+    if args.is_a?(Hash)
+      Duration.new(args)
+    elsif args.respond_to?(:to_i)
+      Duration.new(seconds.to_i)
+    else
+      Duration.new(0)
+    end
   end
 end
 

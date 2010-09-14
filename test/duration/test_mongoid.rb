@@ -14,9 +14,13 @@ class Duration::TestMongoid < MiniTest::Unit::TestCase
     assert_equal zero, Duration.set(nil)
   end
 
-  def test_set_default
+  def test_set_seconds
     assert_equal Duration.new(10), Duration.set("10")
     assert_equal Duration.new(10), Duration.set(10)
+  end
+
+  def test_set_hash
+    assert_equal Duration.new(:minutes => 1, :seconds => 30), Duration.set(:minutes => 1, :seconds => 30)
   end
 
 end

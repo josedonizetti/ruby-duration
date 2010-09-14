@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "ruby-duration"
-    gem.summary = %Q{Duration }
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Duration type}
+    gem.description = %Q{Duration type}
     gem.email = "jose@peleteiro.net"
     gem.homepage = "http://github.com/peleteiro/duration"
     gem.authors = ["Jose Peleteiro"]
