@@ -8,7 +8,6 @@
 # of themselves or perhaps provide a countdown until a certain event.
 class Duration
   include Comparable
-  include Enumerable
 
   # Unit names
   UNITS = [:seconds, :minutes, :hours, :days, :weeks]

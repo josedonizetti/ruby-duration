@@ -10,6 +10,7 @@ class Duration::TestMongoid < MiniTest::Unit::TestCase
 
   def test_set_default
     zero = Duration.new(0)
+    assert_equal zero, Duration.set([1,2,3])
     assert_equal zero, Duration.set("string")
     assert_equal zero, Duration.set(nil)
   end
