@@ -2,17 +2,17 @@
 require 'duration'
 
 class Duration
-  def get
-    total
+  def self.get(seconds)
+    Duration.new(seconds)
   end
 
   def self.set(args)
     if args.is_a?(Hash)
-      Duration.new(args)
+      Duration.new(args).to_i
     elsif args.respond_to?(:to_i)
-      Duration.new(args.to_i)
+      args.to_i
     else
-      Duration.new(0)
+      0
     end
   end
 end

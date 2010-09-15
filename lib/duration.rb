@@ -13,7 +13,7 @@ class Duration
   UNITS = [:seconds, :minutes, :hours, :days, :weeks]
 
   # Unit labels
-  UNIT_LABELS = {:second => 'seconds',
+  UNIT_LABELS = {:second => 'second',
                  :seconds => 'seconds',
                  :minute => 'minute',
                  :minutes => 'minutes',
@@ -37,8 +37,8 @@ class Duration
                :week    => 604800}
 
 
-  attr_reader :total, *UNITS
-
+  attr_reader :total, :seconds, :minutes, :hours, :days, :weeks
+  
   # Initialize a duration. 'args' can be a hash or anything else.  If a hash is
   # passed, it will be scanned for a key=>value pair of time units such as those
   # listed in the Duration::UNITS array or Duration::MULTIPLES hash.
@@ -52,7 +52,7 @@ class Duration
       @seconds = 0
       MULTIPLES.each do |unit, multiple|
         unit = unit.to_sym
-        @seconds += args[unit] * multiple if args.key?(unit)
+        @seconds += args[unit].to_i * multiple if args.key?(unit)
       end
     else
       @seconds = args.to_i

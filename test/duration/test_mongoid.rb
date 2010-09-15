@@ -5,7 +5,7 @@ class Duration::TestMongoid < MiniTest::Unit::TestCase
 
   # Returns seconds to serialization
   def test_get
-    assert_equal 90, Duration.new(90).get
+    assert_equal Duration.new(90), Duration.get(90)
   end
 
   def test_set_default
