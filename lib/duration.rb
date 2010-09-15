@@ -64,6 +64,7 @@ class Duration
 
   # Compare this duration to another (or objects that respond to #to_i)
   def <=>(other)
+    return false unless other.is_a?(Duration)
     @total <=> other.to_i
   end
   

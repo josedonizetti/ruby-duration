@@ -39,13 +39,13 @@ class TestDuration < MiniTest::Unit::TestCase
   end
   
   def test_blank?
-    assert_true Duration.new.blank?
-    assert_false Duration.new(1).blank?
+    assert Duration.new.blank?
+    refute Duration.new(1).blank?
   end
   
   def test_present?
-    assert_false Duration.new.present?
-    assert_true Duration.new(1).present?
+    refute Duration.new.present?
+    assert Duration.new(1).present?
   end
 
 end
