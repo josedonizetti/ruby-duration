@@ -16,6 +16,9 @@ class Duration::TestMongoid < MiniTest::Unit::TestCase
     assert_nil Duration.set([1,2,3])
     assert_nil Duration.set(nil)
     assert_nil Duration.set("")
+    assert_nil Duration.set({})
+    assert_nil Duration.set({:seconds => "", :hours => ""})
+    assert_nil Duration.set({:x => 100, :seconds => ""})
   end
 
   def test_set_duration
