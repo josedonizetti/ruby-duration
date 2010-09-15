@@ -71,6 +71,14 @@ class Duration
   def iso8601
     format("P%wW%dDT%hH%mM%sS")
   end
+  
+  def blank?
+    @total == 0
+  end
+  
+  def present?
+    !blank?
+  end
 
   # Format a duration into a human-readable string.
   #
