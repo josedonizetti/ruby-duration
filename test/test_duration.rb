@@ -32,5 +32,10 @@ class TestDuration < MiniTest::Unit::TestCase
     d = Duration.new(:weeks => 1, :days => 1, :hours => 1, :minutes => 1, :seconds => 1)
     assert_equal("1 week 1 day 1 hour 1 minute 1 second", d.format("%w %~w %d %~d %h %~h %m %~m %s %~s"))
   end
+  
+  def test_iso_8601
+    d = Duration.new(:weeks => 1, :days => 2, :hours => 3, :minutes => 4, :seconds => 5)
+    assert_equal("P1W2DT3H4M5S", d.iso8601)
+  end
 
 end

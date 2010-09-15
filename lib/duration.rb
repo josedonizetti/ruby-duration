@@ -66,6 +66,11 @@ class Duration
   def <=>(other)
     @total <=> other.to_i
   end
+  
+  # Formats a duration in ISO8601. See http://en.wikipedia.org/wiki/ISO_8601#Durations
+  def iso8601
+    format("P%wW%dDT%hH%mM%sS")
+  end
 
   # Format a duration into a human-readable string.
   #
