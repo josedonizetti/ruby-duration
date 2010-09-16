@@ -17,7 +17,7 @@ Features
   * Construtor can receive the amount of time in seconds or a Hash with unit and amount of time.
   * Format method to display the time with i18n support.
   * Mongoid serialization support. Use `require 'duration/mongoid'`.
-  * Tested with mri 1.8.7, ree 1.8.7, mri 1.9.2, jruby and rubinius. Kudos to rvm!
+  * Tested on mri 1.8.7, ree 1.8.7, mri 1.9.2, jruby and rubinius. Kudos to rvm!
 
 
 Show me the code
