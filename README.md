@@ -9,6 +9,7 @@ a new one because and belive it's better to be immutable and the old project is 
 
 I'll try to contact the author of duration to make ruby-duration version 2 of duration's lib. ;)
 
+
 Features
 --------
 
@@ -16,6 +17,7 @@ Features
   * Construtor can receive the amount of time in seconds or a Hash with unit and amount of time.
   * Format method to display the time with i18n support.
   * Mongoid serialization support. Use `require 'duration/mongoid'`.
+  * Tested with mri 1.8.7, ree 1.8.7, mri 1.9.2, jruby and rubinius. Kudos to rvm!
 
 
 Show me the code
@@ -26,7 +28,6 @@ Show me the code
     Duration.new(100) => #<Duration: minutes=1, seconds=40, total=100>
     Duration.new(:hours => 5, :minutes => 70) => #<Duration: hours=6, minutes=10, total=22200>
 
-
 ### format
 
     Duration.new(:weeks => 3, :days => 1).format("%w %~w and %d %~d") => "3 weeks and 1 day"
@@ -36,7 +37,6 @@ Show me the code
 
     Duration.new(:weeks => 1, :days => 20).iso8601 => "P3W6DT0H0M0S"
 
-
 ### Mongoid support
 
     require 'duration/mongoid'
@@ -45,6 +45,7 @@ Show me the code
       include Mongoid::Document
       field :duration, type => Duration
     end
+
 
 Note on Patches/Pull Requests
 -----------------------------
@@ -56,6 +57,7 @@ Note on Patches/Pull Requests
   * Commit, do not mess with rakefile, version, or history.
     (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
   * Send me a pull request. Bonus points for topic branches.
+
 
 License
 ---------

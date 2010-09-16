@@ -39,6 +39,22 @@ rescue LoadError
   end
 end
 
+namespace(:test) do
+  desc "Run tests on multiple ruby versions"
+  task(:portability) do
+    versions = %w{system 1.8.7 ree-1.8.7 1.9.2 jruby rubinius}
+    versions.each do |version|
+      system <<-BASH
+        bash -c 'source ~/.rvm/scripts/rvm;
+                 rvm use #{version};
+                 echo "-------- `ruby -v` ---------\n";
+                 gem install jeweler activesupport minitest yard i18n
+                 rake -s test'
+      BASH
+    end
+  end
+end
+
 task :test => :check_dependencies
 
 task :default => :test
