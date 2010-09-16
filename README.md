@@ -3,6 +3,11 @@ ruby-duration
 
 Duration is an immutable type that represents some amount of time with accuracy in seconds.
 
+A lot of the code and inspirations is borrowed from [duration](http://rubyforge.org/projects/duration) 
+lib, which is a **mutable** Duration type, with a lot more features but lack of test. I decide to create
+a new one because and belive it's better to be immutable and the old project is still on rubyforge's subversion.
+
+I'll try to contact the author of duration to make ruby-duration version 2 of duration's lib. ;)
 
 Features
 --------
@@ -16,7 +21,7 @@ Features
 Show me the code
 ----------------
 
-### construct
+### constructor
 
     Duration.new(100) => #<Duration: minutes=1, seconds=40, total=100>
     Duration.new(:hours => 5, :minutes => 70) => #<Duration: hours=6, minutes=10, total=22200>
@@ -25,8 +30,21 @@ Show me the code
 ### format
 
     Duration.new(:weeks => 3, :days => 1).format("%w %~w and %d %~d") => "3 weeks and 1 day"
-    Duration.new(:weeks => 1, :days => 20).format("%w %~w and %d %~d") => "1 week and 20 days"
+    Duration.new(:weeks => 1, :days => 20).format("%w %~w and %d %~d") => "3 weeks and 6 days"
 
+### iso 8601 [more info](http://en.wikipedia.org/wiki/ISO_8601#Durations)
+
+    Duration.new(:weeks => 1, :days => 20).iso8601 => "P3W6DT0H0M0S"
+
+
+### Mongoid support
+
+    require 'duration/mongoid'
+
+    class MyModel
+      include Mongoid::Document
+      field :duration, type => Duration
+    end
 
 Note on Patches/Pull Requests
 -----------------------------
