@@ -20,7 +20,7 @@ class Duration
                  :day => 'day',
                  :days => 'days',
                  :week => 'week',
-                 :weeks => 'weeks'
+                 :weeks => 'weeks'}
                  
   MULTIPLES = {:seconds => 1,
                :minutes => 60,

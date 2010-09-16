@@ -2,13 +2,15 @@
 require 'duration'
 require 'active_support/core_ext'
 
-class Duration
-  def self.get(seconds)
+# Mongoid serialization support for Duration type.
+module Duration::Mongoid
+  
+  def get(seconds)
     return if !seconds
     Duration.new(seconds)
   end
 
-  def self.set(args)
+  def set(args)
     return if args.blank?
     if args.is_a?(Hash)
       args.delete_if{|k, v| v.blank? || !Duration::UNITS.include?(k.to_sym)}
@@ -22,3 +24,4 @@ class Duration
   end
 end
 
+Duration.send(:extend, Duration::Mongoid)
