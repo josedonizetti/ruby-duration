@@ -36,10 +36,45 @@ describe "Duration" do
   end
   
   describe "#iso_6801" do
-    it "should" do
+    it "should format seconds" do
+      d = Duration.new(:seconds => 1)
+      assert_equal("T1S", d.iso8601)
+    end
+    
+    it "should format minutes" do
+      d = Duration.new(:minutes => 1)
+      assert_equal("T1M", d.iso8601)
+    end
+    
+    it "should format hours" do
+      d = Duration.new(:hours => 1)
+      assert_equal("T1H", d.iso8601)
+    end
+    
+    it "should format days" do
+      d = Duration.new(:days => 1)
+      assert_equal("P1D", d.iso8601)
+    end
+
+    it "should format weeks" do
+      d = Duration.new(:weeks => 1)
+      assert_equal("P1W", d.iso8601)
+    end
+
+    it "should format only with given values" do
       d = Duration.new(:weeks => 1, :days => 2, :hours => 3, :minutes => 4, :seconds => 5)
       assert_equal("P1W2DT3H4M5S", d.iso8601)
+
+      d = Duration.new(:weeks => 1, :hours => 2, :seconds => 3)
+      assert_equal("P1WT2H3S", d.iso8601)
+
+      d = Duration.new(:weeks => 1, :days => 2)
+      assert_equal("P1W2D", d.iso8601)
+
+      d = Duration.new(:hours => 1, :seconds => 30)
+      assert_equal("T1H30S", d.iso8601)
     end
+
   end
   
   describe "utilities methods" do

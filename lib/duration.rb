@@ -64,9 +64,24 @@ class Duration
   # Formats a duration in ISO8601.
   # @see http://en.wikipedia.org/wiki/ISO_8601#Durations
   def iso8601
-    format("P%wW%dDT%hH%mM%sS")
+    output = ''
+    
+    if days > 0 || weeks > 0
+      output << 'P'
+      output << "#{weeks}W" if weeks > 0
+      output << "#{days}D" if days > 0
+    end
+    
+    if seconds > 0 || minutes > 0 || hours > 0
+      output << 'T'
+      output << "#{hours}H" if hours > 0
+      output << "#{minutes}M" if minutes > 0
+      output << "#{seconds}S" if seconds > 0
+    end
+    
+    output
   end
-  
+
   # @return true if total is 0
   def blank?
     @total == 0
