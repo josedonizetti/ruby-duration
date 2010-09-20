@@ -38,17 +38,17 @@ describe "Duration" do
   describe "#iso_6801" do
     it "should format seconds" do
       d = Duration.new(:seconds => 1)
-      assert_equal("T1S", d.iso8601)
+      assert_equal("PT1S", d.iso8601)
     end
     
     it "should format minutes" do
       d = Duration.new(:minutes => 1)
-      assert_equal("T1M", d.iso8601)
+      assert_equal("PT1M", d.iso8601)
     end
     
     it "should format hours" do
       d = Duration.new(:hours => 1)
-      assert_equal("T1H", d.iso8601)
+      assert_equal("PT1H", d.iso8601)
     end
     
     it "should format days" do
@@ -72,7 +72,7 @@ describe "Duration" do
       assert_equal("P1W2D", d.iso8601)
 
       d = Duration.new(:hours => 1, :seconds => 30)
-      assert_equal("T1H30S", d.iso8601)
+      assert_equal("PT1H30S", d.iso8601)
     end
 
   end
