@@ -4,8 +4,7 @@ ruby-duration
 Duration is an immutable type that represents some amount of time with accuracy in seconds.
 
 A lot of the code and inspirations is borrowed from [duration](http://rubyforge.org/projects/duration) 
-lib, which is a **mutable** Duration type, with a lot more features but lack of test. I decide to create
-a new one because and belive it's better to be immutable and the old project is still on rubyforge's subversion.
+lib, which is a **mutable** Duration type with lot more features but lack of tests.
 
 I'll try to contact the author of duration to make ruby-duration version 2 of duration's lib. ;)
 
