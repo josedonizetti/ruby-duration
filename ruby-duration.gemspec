@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ruby-duration}
-  s.version = "0.2.2"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jose Peleteiro"]
-  s.date = %q{2010-09-20}
+  s.date = %q{2010-09-22}
   s.description = %q{Duration type}
   s.email = %q{jose@peleteiro.net}
   s.extra_rdoc_files = [
@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
      "test/helper.rb",
      "test/test_duration.rb"
   ]
-  s.homepage = %q{http://github.com/peleteiro/duration}
+  s.homepage = %q{http://github.com/peleteiro/ruby-duration}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}

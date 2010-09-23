@@ -8,7 +8,7 @@ begin
     gem.summary = %Q{Duration type}
     gem.description = %Q{Duration type}
     gem.email = "jose@peleteiro.net"
-    gem.homepage = "http://github.com/peleteiro/duration"
+    gem.homepage = "http://github.com/peleteiro/ruby-duration"
     gem.authors = ["Jose Peleteiro"]
     gem.add_development_dependency "minitest", ">= 0"
     gem.add_development_dependency "yard", ">= 0"

@@ -60,7 +60,27 @@ class Duration
     return false unless other.is_a?(Duration)
     @total <=> other.to_i
   end
-  
+
+  def +(other)
+    Duration.new(@total + other.to_i)
+  end
+
+  def -(other)
+    Duration.new(@total - other.to_i)
+  end
+
+  def *(other)
+    Duration.new(@total * other.to_i)
+  end
+
+  def /(other)
+    Duration.new(@total / other.to_i)
+  end
+
+  def %(other)
+    Duration.new(@total % other.to_i)
+  end
+
   # Formats a duration in ISO8601.
   # @see http://en.wikipedia.org/wiki/ISO_8601#Durations
   def iso8601
