@@ -10,17 +10,6 @@ class Duration
   include Comparable
 
   UNITS = [:seconds, :minutes, :hours, :days, :weeks]
-
-  UNIT_LABELS = {:second => 'second',
-                 :seconds => 'seconds',
-                 :minute => 'minute',
-                 :minutes => 'minutes',
-                 :hour => 'hour',
-                 :hours => 'hours',
-                 :day => 'day',
-                 :days => 'days',
-                 :week => 'week',
-                 :weeks => 'weeks'}
                  
   MULTIPLES = {:seconds => 1,
                :minutes => 60,
@@ -124,6 +113,25 @@ class Duration
   #   %~h => locale-dependent "hours" terminology
   #   %~d => locale-dependent "days" terminology
   #   %~w => locale-dependent "weeks" terminology
+  #
+  #   You can also use the I18n support.
+  #   Load you locale using I18n.load_path and set it up using I18n.locale= or I18n.default_locale=
+  #   If you are using Ruby on Rails, the support is ready out of the box, so just change your locale file.
+  #   
+  #   You must use the following structure (example):
+  #   pt:
+  #     ruby_duration:
+  #       second: segundo
+  #       seconds: segundos
+  #       minute: minuto
+  #       minutes: minutos
+  #       hour: hora
+  #       hours: horas
+  #       day: dia
+  #       days: dias
+  #       week: semana
+  #       weeks: semanas
+  #
   def format(format_str)
     identifiers = {
       'w'  => @weeks,
@@ -135,11 +143,11 @@ class Duration
       'H'  => @hours.to_s.rjust(2, '0'),
       'M'  => @minutes.to_s.rjust(2, '0'),
       'S'  => @seconds.to_s.rjust(2, '0'),
-      '~s' => @seconds == 1 ? UNIT_LABELS[:second] : UNIT_LABELS[:seconds],
-      '~m' => @minutes == 1 ? UNIT_LABELS[:minute] : UNIT_LABELS[:minutes],
-      '~h' => @hours   == 1 ? UNIT_LABELS[:hour] : UNIT_LABELS[:hours],
-      '~d' => @days    == 1 ? UNIT_LABELS[:day] : UNIT_LABELS[:days],
-      '~w' => @weeks   == 1 ? UNIT_LABELS[:week] : UNIT_LABELS[:weeks]}
+      '~s' => @seconds == 1 ? I18n.t(:second, :scope => :ruby_duration, :default => "second") : I18n.t(:seconds, :scope => :ruby_duration, :default => "seconds"),
+      '~m' => @minutes == 1 ? I18n.t(:minute, :scope => :ruby_duration, :default => "minute") : I18n.t(:minutes, :scope => :ruby_duration, :default => "minutes"),
+      '~h' => @hours   == 1 ? I18n.t(:hour, :scope => :ruby_duration, :default => "hour") : I18n.t(:hours, :scope => :ruby_duration, :default => "hours"),
+      '~d' => @days    == 1 ? I18n.t(:day, :scope => :ruby_duration, :default => "day") : I18n.t(:days, :scope => :ruby_duration, :default => "days"),
+      '~w' => @weeks   == 1 ? I18n.t(:week, :scope => :ruby_duration, :default => "week") : I18n.t(:weeks, :scope => :ruby_duration, :default => "weeks")}
 
     format_str.gsub(/%?%(w|d|h|m|s|t|H|M|S|~(?:s|m|h|d|w))/) do |match|
       match['%%'] ? match : identifiers[match[1..-1]]
