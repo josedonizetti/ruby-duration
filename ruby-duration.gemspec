@@ -14,12 +14,15 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "ruby-duration"
 
+  s.add_dependency "i18n", ">= 0"
+
   s.add_development_dependency "bundler", ">= 1.0.0"
   s.add_development_dependency "minitest", ">= 0"
   s.add_development_dependency "yard", ">= 0"
   s.add_development_dependency "rake", ">= 0"
   s.add_development_dependency "activesupport", ">= 3.0.0"
-  s.add_development_dependency "i18n", ">= 0"
+  s.add_development_dependency "simplecov", ">= 0.3.5"
+  s.add_development_dependency "bluecloth", ">= 0.3.5"
 
   s.files        = `git ls-files`.split("\n")
   s.executables  = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact

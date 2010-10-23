@@ -1,3 +1,11 @@
-pkg/*
-*.gem
+.DS_Store
+.idea
 .bundle
+*~
+#*
+*.gem
+.yardoc/*
+coverage/*
+doc/*
+pkg/*
+
