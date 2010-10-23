@@ -114,11 +114,14 @@ class Duration
   #   %~d => locale-dependent "days" terminology
   #   %~w => locale-dependent "weeks" terminology
   #
-  #   You can also use the I18n support.
-  #   Load you locale using I18n.load_path and set it up using I18n.locale= or I18n.default_locale=
-  #   If you are using Ruby on Rails, the support is ready out of the box, so just change your locale file.
-  #   
-  #   You must use the following structure (example):
+  # You can also use the I18n support.
+  # The %~s, %~m, %~h, %~d and %~w can be translated with I18n.
+  # If you are using Ruby on Rails, the support is ready out of the box, so just change your locale file. Otherwise you can try:
+  #
+  #   I18n.load_path << "path/to/your/locale"
+  #   I18n.locale = :your_locale
+  # 
+  # And you must use the following structure (example) for your locale file:
   #   pt:
   #     ruby_duration:
   #       second: segundo
