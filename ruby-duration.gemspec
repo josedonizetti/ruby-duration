@@ -5,8 +5,8 @@ Gem::Specification.new do |s|
   s.name        = "ruby-duration"
   s.version     = Duration::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Jose Peleteiro"]
-  s.email       = ["jose@peleteiro.net"]
+  s.authors     = ["Jose Peleteiro", "Bruno Azisaka Maciel"]
+  s.email       = ["jose@peleteiro.net", "bruno@bubble.com.br"]
   s.homepage    = "http://github.com/peleteiro/ruby-duration"
   s.summary     = "Duration type"
   s.description = "Duration type"
