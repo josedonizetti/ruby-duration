@@ -146,11 +146,12 @@ class Duration
       'H'  => @hours.to_s.rjust(2, '0'),
       'M'  => @minutes.to_s.rjust(2, '0'),
       'S'  => @seconds.to_s.rjust(2, '0'),
-      '~s' => @seconds == 1 ? I18n.t(:second, :scope => :ruby_duration, :default => "second") : I18n.t(:seconds, :scope => :ruby_duration, :default => "seconds"),
-      '~m' => @minutes == 1 ? I18n.t(:minute, :scope => :ruby_duration, :default => "minute") : I18n.t(:minutes, :scope => :ruby_duration, :default => "minutes"),
-      '~h' => @hours   == 1 ? I18n.t(:hour, :scope => :ruby_duration, :default => "hour") : I18n.t(:hours, :scope => :ruby_duration, :default => "hours"),
-      '~d' => @days    == 1 ? I18n.t(:day, :scope => :ruby_duration, :default => "day") : I18n.t(:days, :scope => :ruby_duration, :default => "days"),
-      '~w' => @weeks   == 1 ? I18n.t(:week, :scope => :ruby_duration, :default => "week") : I18n.t(:weeks, :scope => :ruby_duration, :default => "weeks")}
+      '~s' => i18n_for(:second),
+      '~m' => i18n_for(:minute),
+      '~h' => i18n_for(:hour),
+      '~d' => i18n_for(:day),
+      '~w' => i18n_for(:week)
+    }
 
     format_str.gsub(/%?%(w|d|h|m|s|t|H|M|S|~(?:s|m|h|d|w))/) do |match|
       match['%%'] ? match : identifiers[match[1..-1]]
@@ -178,5 +179,11 @@ private
     # Gather the divided units
     @weeks, @days, @hours, @minutes, @seconds = units
   end
-
+  
+  def i18n_for(singular)
+    plural = "#{singular}s"
+    label = send(plural) == 1 ? singular : plural
+    
+    I18n.t(label, :scope => :ruby_duration, :default => label.to_s)
+  end
 end
