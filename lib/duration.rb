@@ -1,4 +1,5 @@
 # -*- encoding:  utf-8 -*-
+require 'i18n'
 
 # Duration objects are simple mechanisms that allow you to operate on durations
 # of time.  They allow you to know how much time has passed since a certain
