@@ -1,2 +1,2 @@
 # -*- encoding:  utf-8 -*-
-require 'duration'
+require "#{File.dirname(__FILE__)}/mongoid/fields/serializable/duration"

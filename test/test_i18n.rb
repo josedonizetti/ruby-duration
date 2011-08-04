@@ -1,9 +1,11 @@
 # -*- encoding:  utf-8 -*-
 require 'helper'
 
-I18n.load_path << File.join(File.dirname(__FILE__), '..', 'fixtures', 'locales', 'pt.yml')
+I18n.load_path << File.join(File.dirname(__FILE__), 'fixtures', 'locales', 'pt.yml')
 
 describe "I18n" do
+  include Mongoid::Fields::Serializable
+  
   describe "when the locale is pt" do
     before do
       I18n.locale = :pt
