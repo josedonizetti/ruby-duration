@@ -2,8 +2,6 @@
 require 'helper'
 
 describe "Duration" do
-  include Mongoid::Fields::Serializable
-
   it "should initialize given duration in seconds" do
     d = Duration.new(90)
     assert_equal 0, d.weeks

@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path("../lib/mongoid/fields/serializable/duration/version", __FILE__)
+require File.expand_path("../lib/duration/version", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "ruby-duration"
-  s.version     = Mongoid::Fields::Serializable::Duration::VERSION
+  s.version     = Duration::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Jose Peleteiro", "Bruno Azisaka Maciel"]
   s.email       = ["jose@peleteiro.net", "bruno@azisaka.com.br"]
