@@ -106,6 +106,7 @@ class Duration
   #   %h  => hours
   #   %m  => minutes
   #   %s  => seconds
+  #   %tm => total minutes
   #   %t  => total seconds
   #   %H  => zero-padded hours
   #   %M  => zero-padded minutes
@@ -144,8 +145,8 @@ class Duration
       'h'  => @hours,
       'm'  => @minutes,
       's'  => @seconds,
-      't'  => @total,
       'tm' => @total / 60,
+      't'  => @total,
       'H'  => @hours.to_s.rjust(2, '0'),
       'M'  => @minutes.to_s.rjust(2, '0'),
       'S'  => @seconds.to_s.rjust(2, '0'),
