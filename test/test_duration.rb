@@ -29,22 +29,22 @@ describe "Duration" do
       assert_equal Duration.new(15), Duration.new(10) + Duration.new(5)
     end
     
-    it "sould -" do
+    it "should -" do
       assert_equal Duration.new(5), Duration.new(10) - 5
       assert_equal Duration.new(5), Duration.new(10) - Duration.new(5)
     end
     
-    it "sould *" do
+    it "should *" do
       assert_equal Duration.new(20), Duration.new(10) * 2
       assert_equal Duration.new(20), Duration.new(10) * Duration.new(2)
     end
     
-    it "sould /" do
+    it "should /" do
       assert_equal Duration.new(5), Duration.new(10) / 2
       assert_equal Duration.new(5), Duration.new(10) / Duration.new(2)
     end
     
-    it "sould %" do
+    it "should %" do
       assert_equal Duration.new(1), Duration.new(10) % 3
       assert_equal Duration.new(1), Duration.new(10) % Duration.new(3)
     end
@@ -59,6 +59,16 @@ describe "Duration" do
     it "should display units in singular form when needed" do
       d = Duration.new(:weeks => 1, :days => 1, :hours => 1, :minutes => 1, :seconds => 1)
       assert_equal "1 week 1 day 1 hour 1 minute 1 second", d.format("%w %~w %d %~d %h %~h %m %~m %s %~s")
+    end
+    
+    it "should display total seconds" do
+      d = Duration.new(:hours => 1, :minutes => 15)
+      assert_equal "4500 seconds", d.format("%t %~s")
+    end
+    
+    it "should display total minutes" do
+      d = Duration.new(:hours => 1, :minutes => 15)
+      assert_equal "75 minutes", d.format("%tm %~m")
     end
   end
   

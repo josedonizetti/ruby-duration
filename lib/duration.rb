@@ -145,6 +145,7 @@ class Duration
       'm'  => @minutes,
       's'  => @seconds,
       't'  => @total,
+      'tm' => @total / 60,
       'H'  => @hours.to_s.rjust(2, '0'),
       'M'  => @minutes.to_s.rjust(2, '0'),
       'S'  => @seconds.to_s.rjust(2, '0'),
@@ -155,7 +156,7 @@ class Duration
       '~w' => i18n_for(:week)
     }
 
-    format_str.gsub(/%?%(w|d|h|m|s|t|H|M|S|~(?:s|m|h|d|w))/) do |match|
+    format_str.gsub(/%?%(w|d|h|m|s|tm?|H|M|S|~(?:s|m|h|d|w))/) do |match|
       match['%%'] ? match : identifiers[match[1..-1]]
     end.gsub('%%', '%')
   end
