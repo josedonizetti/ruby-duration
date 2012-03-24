@@ -10,6 +10,7 @@ describe "Duration" do
     assert_equal 1, d.minutes
     assert_equal 30, d.seconds
     assert_equal 90, d.total
+    assert_equal 1, d.total_minutes
   end
 
   it "should initialize given duration in Hash" do
@@ -20,6 +21,7 @@ describe "Duration" do
     assert_equal 4, d.minutes
     assert_equal 5, d.seconds
     assert_equal 788645, d.total
+    assert_equal 13144, d.total_minutes
   end
   
   describe "mathematical operations" do
@@ -63,12 +65,22 @@ describe "Duration" do
     
     it "should display total seconds" do
       d = Duration.new(:hours => 1, :minutes => 15)
-      assert_equal "4500 seconds", d.format("%t %~s")
+      assert_equal "4500 seconds", d.format("%t %~ts")
+    end
+    
+    it "should display total seconds in plural form when needed" do
+      d = Duration.new(:minutes => 1, :seconds => 1)
+      assert_equal "61 seconds", d.format("%t %~ts")
     end
     
     it "should display total minutes" do
       d = Duration.new(:hours => 1, :minutes => 15)
-      assert_equal "75 minutes", d.format("%tm %~m")
+      assert_equal "75 minutes", d.format("%tm %~tm")
+    end
+    
+    it "should display total minutes in plural form when needed" do
+      d = Duration.new(:hours => 1, :minutes => 1)
+      assert_equal "61 minutes", d.format("%tm %~tm")
     end
   end
   

@@ -71,6 +71,10 @@ class Duration
   def %(other)
     Duration.new(@total % other.to_i)
   end
+  
+  def total_minutes
+    @total / 60
+  end
 
   # Formats a duration in ISO8601.
   # @see http://en.wikipedia.org/wiki/ISO_8601#Durations
@@ -145,7 +149,7 @@ class Duration
       'h'  => @hours,
       'm'  => @minutes,
       's'  => @seconds,
-      'tm' => @total / 60,
+      'tm' => Proc.new { total_minutes },
       't'  => @total,
       'H'  => @hours.to_s.rjust(2, '0'),
       'M'  => @minutes.to_s.rjust(2, '0'),
@@ -154,11 +158,13 @@ class Duration
       '~m' => i18n_for(:minute),
       '~h' => i18n_for(:hour),
       '~d' => i18n_for(:day),
-      '~w' => i18n_for(:week)
+      '~w' => i18n_for(:week),
+      '~ts'=> Proc.new { i18n_for(:total) },
+      '~tm'=> Proc.new { i18n_for(:total_minute) }
     }
 
-    format_str.gsub(/%?%(w|d|h|m|s|tm?|H|M|S|~(?:s|m|h|d|w))/) do |match|
-      match['%%'] ? match : identifiers[match[1..-1]]
+    format_str.gsub(/%?%(w|d|h|m|s|tm?|H|M|S|~(?:s|m|h|d|w|ts|tm))/) do |match|
+      match['%%'] ? match : (identifiers[match[1..-1]].class == Proc ? identifiers[match[1..-1]].call : identifiers[match[1..-1]])
     end.gsub('%%', '%')
   end
 
@@ -185,8 +191,19 @@ private
   end
 
   def i18n_for(singular)
-    plural = "#{singular}s"
-    label = send(plural) == 1 ? singular : plural
+    if singular == :total
+      fn_name = :total
+      singular = :second
+      plural = 'seconds'
+    elsif singular.to_s.start_with?('total_')
+      fn_name = "#{singular}s"
+      singular = singular.to_s['total_'.length..-1]
+      plural = "#{singular}s"
+    else
+      plural = "#{singular}s"
+      fn_name = plural
+    end
+    label = send(fn_name) == 1 ? singular : plural
 
     I18n.t(label, :scope => :ruby_duration, :default => label.to_s)
   end
