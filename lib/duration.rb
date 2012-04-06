@@ -71,6 +71,10 @@ class Duration
   def %(other)
     Duration.new(@total % other.to_i)
   end
+  
+  %w(minutes hours days).each do |meth|
+    define_method("total_#{meth}") { @total / MULTIPLES[meth.to_sym] }
+  end
 
   # Formats a duration in ISO8601.
   # @see http://en.wikipedia.org/wiki/ISO_8601#Durations
@@ -101,20 +105,28 @@ class Duration
 
   # Format a duration into a human-readable string.
   #
-  #   %w  => weeks
-  #   %d  => days
-  #   %h  => hours
-  #   %m  => minutes
-  #   %s  => seconds
-  #   %t  => total seconds
-  #   %H  => zero-padded hours
-  #   %M  => zero-padded minutes
-  #   %S  => zero-padded seconds
-  #   %~s => locale-dependent "seconds" terminology
-  #   %~m => locale-dependent "minutes" terminology
-  #   %~h => locale-dependent "hours" terminology
-  #   %~d => locale-dependent "days" terminology
-  #   %~w => locale-dependent "weeks" terminology
+  #   %w   => weeks
+  #   %d   => days
+  #   %h   => hours
+  #   %m   => minutes
+  #   %s   => seconds
+  #   %td  => total days
+  #   %th  => total hours
+  #   %tm  => total minutes
+  #   %ts  => total seconds
+  #   %t   => total seconds
+  #   %H   => zero-padded hours
+  #   %M   => zero-padded minutes
+  #   %S   => zero-padded seconds
+  #   %~s  => locale-dependent "seconds" terminology
+  #   %~m  => locale-dependent "minutes" terminology
+  #   %~h  => locale-dependent "hours" terminology
+  #   %~d  => locale-dependent "days" terminology
+  #   %~w  => locale-dependent "weeks" terminology
+  #   %tdu => total days with locale-dependent unit
+  #   %thu => total hours with locale-dependent unit
+  #   %tmu => total minutes with locale-dependent unit
+  #   %tsu => total seconds with locale-dependent unit
   #
   # You can also use the I18n support.
   # The %~s, %~m, %~h, %~d and %~w can be translated with I18n.
@@ -144,6 +156,10 @@ class Duration
       'h'  => @hours,
       'm'  => @minutes,
       's'  => @seconds,
+      'td' => Proc.new { total_days },
+      'th' => Proc.new { total_hours },
+      'tm' => Proc.new { total_minutes },
+      'ts' => @total,
       't'  => @total,
       'H'  => @hours.to_s.rjust(2, '0'),
       'M'  => @minutes.to_s.rjust(2, '0'),
@@ -152,11 +168,15 @@ class Duration
       '~m' => i18n_for(:minute),
       '~h' => i18n_for(:hour),
       '~d' => i18n_for(:day),
-      '~w' => i18n_for(:week)
+      '~w' => i18n_for(:week),
+      'tdu'=> Proc.new { "#{total_days} #{i18n_for(:total_day)}"},
+      'thu'=> Proc.new { "#{total_hours} #{i18n_for(:total_hour)}"},
+      'tmu'=> Proc.new { "#{total_minutes} #{i18n_for(:total_minute)}"},
+      'tsu'=> Proc.new { "#{total} #{i18n_for(:total)}"}
     }
 
-    format_str.gsub(/%?%(w|d|h|m|s|t|H|M|S|~(?:s|m|h|d|w))/) do |match|
-      match['%%'] ? match : identifiers[match[1..-1]]
+    format_str.gsub(/%?%(w|d|h|m|s|t([dhms]u?)?|H|M|S|~(?:s|m|h|d|w))/) do |match|
+      match['%%'] ? match : (identifiers[match[1..-1]].class == Proc ? identifiers[match[1..-1]].call : identifiers[match[1..-1]])
     end.gsub('%%', '%')
   end
 
@@ -183,8 +203,19 @@ private
   end
 
   def i18n_for(singular)
-    plural = "#{singular}s"
-    label = send(plural) == 1 ? singular : plural
+    if singular == :total
+      fn_name = :total
+      singular = :second
+      plural = 'seconds'
+    elsif singular.to_s.start_with?('total_')
+      fn_name = "#{singular}s"
+      singular = singular.to_s['total_'.length..-1]
+      plural = "#{singular}s"
+    else
+      plural = "#{singular}s"
+      fn_name = plural
+    end
+    label = send(fn_name) == 1 ? singular : plural
 
     I18n.t(label, :scope => :ruby_duration, :default => label.to_s)
   end
