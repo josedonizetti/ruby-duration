@@ -159,11 +159,13 @@ class Duration
       '~h' => i18n_for(:hour),
       '~d' => i18n_for(:day),
       '~w' => i18n_for(:week),
-      '~ts'=> Proc.new { i18n_for(:total) },
-      '~tm'=> Proc.new { i18n_for(:total_minute) }
+#      '~ts'=> Proc.new { i18n_for(:total) },
+#      '~tm'=> Proc.new { i18n_for(:total_minute) }
+      'tmu'=> Proc.new { "#{total_minutes} #{i18n_for(:total_minute)}"},
+      'tsu'=> Proc.new { "#{total} #{i18n_for(:total)}"}
     }
 
-    format_str.gsub(/%?%(w|d|h|m|s|tm?|H|M|S|~(?:s|m|h|d|w|ts|tm))/) do |match|
+    format_str.gsub(/%?%(w|d|h|m|s|(tmu)|(tsu)|(tm)|t|H|M|S|~(?:s|m|h|d|w))/) do |match|
       match['%%'] ? match : (identifiers[match[1..-1]].class == Proc ? identifiers[match[1..-1]].call : identifiers[match[1..-1]])
     end.gsub('%%', '%')
   end

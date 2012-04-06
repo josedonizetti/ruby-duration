@@ -65,22 +65,27 @@ describe "Duration" do
     
     it "should display total seconds" do
       d = Duration.new(:hours => 1, :minutes => 15)
-      assert_equal "4500 seconds", d.format("%t %~ts")
+      assert_equal "4500 seconds", d.format("%tsu")
     end
     
     it "should display total seconds in plural form when needed" do
       d = Duration.new(:minutes => 1, :seconds => 1)
-      assert_equal "61 seconds", d.format("%t %~ts")
+      assert_equal "61 seconds", d.format("%tsu")
     end
     
-    it "should display total minutes" do
+    it "should display total minutes as number" do
       d = Duration.new(:hours => 1, :minutes => 15)
-      assert_equal "75 minutes", d.format("%tm %~tm")
+      assert_equal "75", d.format("%tm")
     end
     
+    it 'should display total minutes with unit' do
+      d = Duration.new(:hours => 1, :minutes => 15)
+      assert_equal "75 minutes", d.format("%tmu")
+    end
+      
     it "should display total minutes in plural form when needed" do
       d = Duration.new(:hours => 1, :minutes => 1)
-      assert_equal "61 minutes", d.format("%tm %~tm")
+      assert_equal "61 minutes", d.format("%tmu")
     end
   end
   
