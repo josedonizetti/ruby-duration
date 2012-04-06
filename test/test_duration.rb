@@ -11,17 +11,21 @@ describe "Duration" do
     assert_equal 30, d.seconds
     assert_equal 90, d.total
     assert_equal 1, d.total_minutes
+    assert_equal 0, d.total_hours
+    assert_equal 0, d.total_days
   end
 
   it "should initialize given duration in Hash" do
     d = Duration.new(:weeks => 1, :days => 2, :hours => 3, :minutes => 4, :seconds => 5)
-    assert_equal 1, d.weeks
-    assert_equal 2, d.days
-    assert_equal 3, d.hours
-    assert_equal 4, d.minutes
-    assert_equal 5, d.seconds
+    assert_equal      1, d.weeks
+    assert_equal      2, d.days
+    assert_equal      3, d.hours
+    assert_equal      4, d.minutes
+    assert_equal      5, d.seconds
     assert_equal 788645, d.total
-    assert_equal 13144, d.total_minutes
+    assert_equal  13144, d.total_minutes
+    assert_equal    219, d.total_hours
+    assert_equal      9, d.total_days
   end
   
   describe "mathematical operations" do
@@ -86,6 +90,36 @@ describe "Duration" do
     it "should display total minutes in plural form when needed" do
       d = Duration.new(:hours => 1, :minutes => 1)
       assert_equal "61 minutes", d.format("%tmu")
+    end
+    
+    it "should display total hours as number" do
+      d = Duration.new(:days => 2, :hours => 1)
+      assert_equal "49", d.format("%th")
+    end
+    
+    it 'should display total hours with unit' do
+      d = Duration.new(:days => 2, :hours => 2)
+      assert_equal "50 hours", d.format("%thu")
+    end
+      
+    it "should display total hours in plural form when needed" do
+      d = Duration.new(:days => 1, :hours => 1)
+      assert_equal "25 hours", d.format("%thu")
+    end
+    
+    it "should display total days as number" do
+      d = Duration.new(:weeks => 1, :days => 3)
+      assert_equal "10", d.format("%td")
+    end
+    
+    it 'should display total days with unit' do
+      d = Duration.new(:weeks => 1, :days => 2)
+      assert_equal "9 days", d.format("%tdu")
+    end
+      
+    it "should display total days in plural form when needed" do
+      d = Duration.new(:weeks => 1, :days => 1)
+      assert_equal "8 days", d.format("%tdu")
     end
   end
   
