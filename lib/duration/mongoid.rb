@@ -1,11 +1,12 @@
 require "#{File.dirname(__FILE__)}/../duration"
+require "mongoid/fields"
 
 # Mongoid serialization support for Duration type.
 module Mongoid
   module Fields
     class Duration
-      include Serializable
-      
+      include Mongoid::Fields::Serializable
+    
       # Deserialize a Duration given the amount of seconds stored by Mongodb
       #
       # @param [Integer, nil] duration in seconds
