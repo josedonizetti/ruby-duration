@@ -1,5 +1,6 @@
-require "#{File.dirname(__FILE__)}/../duration"
-require "mongoid/fields"
+require 'duration'
+Duration::Dependency.load('mongoid')
+require 'mongoid/fields'
 
 # Mongoid serialization support for Duration type.
 module Mongoid

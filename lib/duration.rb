@@ -9,6 +9,8 @@ require 'active_support/core_ext'
 # be useful for those scripts or applications that allow you to know the uptime
 # of themselves or perhaps provide a countdown until a certain event.
 class Duration
+  autoload :Dependency, 'duration/dependency'
+
   include Comparable
 
   UNITS = [:seconds, :minutes, :hours, :days, :weeks]
