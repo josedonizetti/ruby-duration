@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "yard", ">= 0"
   s.add_development_dependency "rake", ">= 0"
   s.add_development_dependency "simplecov", ">= 0.3.5"
-  s.add_development_dependency "bluecloth", ">= 0.3.5"
   s.add_development_dependency "mongoid", "~> 2.4.0"
 
   s.files        = `git ls-files`.split("\n")
