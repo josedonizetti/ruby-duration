@@ -7,7 +7,7 @@ describe "mongoid support" do
   before do
     class MyModel
       include Mongoid::Document
-      field :duration, type: Duration
+      field :duration, :type => Duration
     end
     @model = MyModel.new
   end
