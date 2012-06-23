@@ -27,6 +27,12 @@ describe "Duration" do
     assert_equal    219, d.total_hours
     assert_equal      9, d.total_days
   end
+
+  it 'should load and dump' do
+    duration = Duration.new(:seconds => 3)
+    assert_equal 'PT3S', Duration.dump(duration)
+    assert_equal Duration.load('PT3S'), duration
+  end
   
   describe "mathematical operations" do
     

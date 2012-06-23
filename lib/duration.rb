@@ -49,6 +49,14 @@ class Duration
     calculate!
   end
 
+  def self.load string
+    self.new(string)
+  end
+
+  def self.dump duration
+    duration.iso8601
+  end
+
   # Compare this duration to another (or objects that respond to #to_i)
   def <=>(other)
     return false unless other.is_a?(Duration)
