@@ -6,7 +6,7 @@ module Mongoid
   module Fields
     class Duration
       include Mongoid::Fields::Serializable
-    
+
       # Deserialize a Duration given the amount of seconds stored by Mongodb
       #
       # @param [Integer, nil] duration in seconds

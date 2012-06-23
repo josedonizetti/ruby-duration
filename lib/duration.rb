@@ -71,7 +71,7 @@ class Duration
   def %(other)
     Duration.new(@total % other.to_i)
   end
-  
+
   %w(minutes hours days).each do |meth|
     define_method("total_#{meth}") { @total / MULTIPLES[meth.to_sym] }
   end
@@ -134,7 +134,7 @@ class Duration
   #
   #   I18n.load_path << "path/to/your/locale"
   #   I18n.locale = :your_locale
-  # 
+  #
   # And you must use the following structure (example) for your locale file:
   #   pt:
   #     ruby_duration:
@@ -182,7 +182,7 @@ class Duration
 
   alias_method :to_i, :total
   alias_method :strftime, :format
-  
+
 private
 
   # Calculates the duration from seconds and figures out what the actual
