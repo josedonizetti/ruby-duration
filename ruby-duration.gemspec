@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "activesupport", ">= 3.0.0"
   s.add_dependency "i18n", ">= 0"
+  s.add_dependency "iso8601", ">= 0"
 
   s.add_development_dependency "bundler", ">= 1.0.0"
   s.add_development_dependency "minitest", ">= 0"
