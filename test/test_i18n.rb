@@ -3,7 +3,7 @@ require 'helper'
 
 I18n.load_path << File.join(File.dirname(__FILE__), 'fixtures', 'locales', 'pt.yml')
 
-describe "I18n" do  
+describe "I18n" do
   describe "when the locale is pt" do
     before do
       I18n.locale = :pt
@@ -30,7 +30,7 @@ describe "I18n" do
     end
 
     it "should translate to horas" do
-      assert_equal "horas", Duration.new.format("%~h") 
+      assert_equal "horas", Duration.new.format("%~h")
     end
 
     it "should translate to dia" do

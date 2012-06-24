@@ -11,7 +11,7 @@ describe "mongoid support" do
     end
     @model = MyModel.new
   end
-  
+
   describe "assigning an integer value" do
     it "should return the duration given the total in seconds" do
       @model.duration = 90
@@ -23,14 +23,14 @@ describe "mongoid support" do
       assert_nil @model.duration
     end
   end
-  
+
   describe "assigning an array" do
     it "should return nil" do
       @model.duration = [1,2,3]
       assert_nil @model.duration
     end
   end
-  
+
   describe "assigning a valid hash" do
     it "should return total seconds given a duration in hash" do
       @model.duration = { :minutes => 1, :seconds => 30 }
@@ -59,10 +59,10 @@ describe "mongoid support" do
     it "should return total seconds given a duration in string" do
       @model.duration = "10"
       assert_equal Duration.new(10), @model.duration
-   
+
       @model.duration = "10string"
       assert_equal Duration.new(10), @model.duration
-         
+
       @model.duration = "string"
       assert_equal Duration.new(0), @model.duration
     end
