@@ -37,7 +37,10 @@ Show me the code
     Duration.new(:weeks => 1, :days => 20).iso8601 => "P3W6DT0H0M0S"
 
 ### Mongoid support
-The current version of this gem supports Mongoid >= [2.1.0](https://github.com/mongoid/mongoid). For lower Mongoid versions try the tag [v1.0.0](https://github.com/peleteiro/ruby-duration/tree/v1.0.0)
+The current version of this gem supports Mongoid >= [3.0.0](https://github.com/mongoid/mongoid).
+For lower Mongoid versions try:
+ * < 3.0.0 tag [v2.1.4](https://github.com/peleteiro/ruby-duration/tree/v2.1.4)
+ * < 2.1.0 tag [v1.0.0](https://github.com/peleteiro/ruby-duration/tree/v1.0.0)
 
     require 'duration/mongoid'
 
