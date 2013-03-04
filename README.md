@@ -16,7 +16,7 @@ Features
   * Construtor can receive the amount of time in seconds or a Hash with unit and amount of time.
   * Format method to display the time with i18n support.
   * Mongoid serialization support. Use `require 'duration/mongoid'`.
-  * Tested on mri 1.8.7, ree 1.8.7, mri 1.9.2, jruby and rubinius. Kudos to rvm!
+  * Tested on mri 1.9.3 and jruby. Kudos to rvm!
 
 
 Show me the code
@@ -37,7 +37,10 @@ Show me the code
     Duration.new(:weeks => 1, :days => 20).iso8601 => "P3W6DT0H0M0S"
 
 ### Mongoid support
-The current version of this gem supports Mongoid >= [2.1.0](https://github.com/mongoid/mongoid). For lower Mongoid versions try the tag [v1.0.0](https://github.com/peleteiro/ruby-duration/tree/v1.0.0)
+The current version of this gem supports Mongoid >= [3.0.0](https://github.com/mongoid/mongoid).
+For lower Mongoid versions try:
+ * < 3.0.0 tag [v2.1.4](https://github.com/peleteiro/ruby-duration/tree/v2.1.4)
+ * < 2.1.0 tag [v1.0.0](https://github.com/peleteiro/ruby-duration/tree/v1.0.0)
 
     require 'duration/mongoid'
 
@@ -45,6 +48,11 @@ The current version of this gem supports Mongoid >= [2.1.0](https://github.com/m
       include Mongoid::Document
       field :duration, type => Duration
     end
+
+### Dependencies
+The current version of this gem runs only on Ruby Versions >= 1.9.3. 
+If you are running a older version of Ruby try:
+* tag [v2.1.4](https://github.com/peleteiro/ruby-duration/tree/v2.1.4)
 
 
 Note on Patches/Pull Requests
