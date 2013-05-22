@@ -1,6 +1,6 @@
 # -*- encoding:  utf-8 -*-
 require 'rubygems'
-require 'minitest/spec'
+require 'minitest/autorun'
 begin
   require 'simplecov'
   SimpleCov.start do
