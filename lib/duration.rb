@@ -1,6 +1,7 @@
 # -*- encoding:  utf-8 -*-
 require 'i18n'
 require 'active_support/core_ext'
+require 'iso8601'
 
 # Duration objects are simple mechanisms that allow you to operate on durations
 # of time.  They allow you to know how much time has passed since a certain
@@ -39,11 +40,21 @@ class Duration
         unit = unit.to_sym
         @seconds += args[unit].to_i * multiple if args.key?(unit)
       end
+    elsif args.kind_of?(String) and args[0] == 'P'
+      @seconds = ISO8601::Duration.new(args).to_seconds
     else
       @seconds = args.to_i
     end
 
     calculate!
+  end
+
+  def self.load string
+    self.new(string)
+  end
+
+  def self.dump duration
+    duration.iso8601
   end
 
   # Compare this duration to another (or objects that respond to #to_i)
@@ -81,8 +92,8 @@ class Duration
   def iso8601
     output = 'P'
 
-    output << "#{weeks}W" if weeks > 0
-    output << "#{days}D" if days > 0
+    number_of_days = weeks * 7 + days
+    output << "#{number_of_days}D" if number_of_days > 0
     if seconds > 0 || minutes > 0 || hours > 0
       output << 'T'
       output << "#{hours}H" if hours > 0
