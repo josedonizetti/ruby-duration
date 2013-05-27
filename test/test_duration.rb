@@ -28,6 +28,12 @@ describe "Duration" do
     assert_equal      9, d.total_days
   end
 
+  it 'should load and dump' do
+    duration = Duration.new(:seconds => 3)
+    assert_equal 'PT3S', Duration.dump(duration)
+    assert_equal Duration.load('PT3S'), duration
+  end
+
   describe "mathematical operations" do
 
     it "should +" do
@@ -123,6 +129,16 @@ describe "Duration" do
     end
   end
 
+  describe "creation from iso_8601" do
+    it "should work" do
+      assert_equal 60, Duration.new("PT1M").to_i
+      assert_equal 3630, Duration.new("PT1H30S").to_i
+
+      duration = Duration.new(:weeks => 1, :days => 1, :hours => 2, :minutes => 1, :seconds => 2)
+      assert_equal duration, Duration.new(duration.iso8601)
+    end
+  end
+
   describe "#iso_6801" do
     it "should format seconds" do
       d = Duration.new(:seconds => 1)
@@ -144,20 +160,20 @@ describe "Duration" do
       assert_equal "P1D", d.iso8601
     end
 
-    it "should format weeks" do
+    it "should format weeks as ndays" do
       d = Duration.new(:weeks => 1)
-      assert_equal "P1W", d.iso8601
+      assert_equal "P7D", d.iso8601
     end
 
     it "should format only with given values" do
       d = Duration.new(:weeks => 1, :days => 2, :hours => 3, :minutes => 4, :seconds => 5)
-      assert_equal "P1W2DT3H4M5S", d.iso8601
+      assert_equal "P9DT3H4M5S", d.iso8601
 
       d = Duration.new(:weeks => 1, :hours => 2, :seconds => 3)
-      assert_equal "P1WT2H3S", d.iso8601
+      assert_equal "P7DT2H3S", d.iso8601
 
       d = Duration.new(:weeks => 1, :days => 2)
-      assert_equal "P1W2D", d.iso8601
+      assert_equal "P9D", d.iso8601
 
       d = Duration.new(:hours => 1, :seconds => 30)
       assert_equal "PT1H30S", d.iso8601
