@@ -126,6 +126,10 @@ class Duration
   #   %tm  => total minutes
   #   %ts  => total seconds
   #   %t   => total seconds
+  #   %MP  => minutes with UTF-8 prime
+  #   %SP  => seconds with UTF-8 double-prime
+  #   %MH  => minutes with HTML prime
+  #   %SH  => seconds with HTML double-prime
   #   %H   => zero-padded hours
   #   %M   => zero-padded minutes
   #   %S   => zero-padded seconds
@@ -172,6 +176,10 @@ class Duration
       'tm' => Proc.new { total_minutes },
       'ts' => @total,
       't'  => @total,
+      'MP' =>  Proc.new { "#{@minutes}′"},
+      'SP' =>  Proc.new { "#{@seconds}″"},
+      'MH' =>  Proc.new { "#{@minutes}&#8242;"},
+      'SH' =>  Proc.new { "#{@seconds}&#8243;"},
       'H'  => @hours.to_s.rjust(2, '0'),
       'M'  => @minutes.to_s.rjust(2, '0'),
       'S'  => @seconds.to_s.rjust(2, '0'),
@@ -183,10 +191,10 @@ class Duration
       'tdu'=> Proc.new { "#{total_days} #{i18n_for(:total_day)}"},
       'thu'=> Proc.new { "#{total_hours} #{i18n_for(:total_hour)}"},
       'tmu'=> Proc.new { "#{total_minutes} #{i18n_for(:total_minute)}"},
-      'tsu'=> Proc.new { "#{total} #{i18n_for(:total)}"}
+      'tsu'=> Proc.new { "#{total} #{i18n_for(:total)}"},
     }
 
-    format_str.gsub(/%?%(w|d|h|m|s|t([dhms]u?)?|H|M|S|~(?:s|m|h|d|w))/) do |match|
+    format_str.gsub(/%?%(w|d|h|m|s|t([dhms]u?)?|MP|SP|MH|SH|H|M|S|~(?:s|m|h|d|w))/) do |match|
       match['%%'] ? match : (identifiers[match[1..-1]].class == Proc ? identifiers[match[1..-1]].call : identifiers[match[1..-1]])
     end.gsub('%%', '%')
   end
