@@ -129,6 +129,28 @@ describe "Duration" do
     end
   end
 
+  describe "output typographic marks for minutes and seconds" do
+    it "uses a UTF-8 double prime for seconds" do
+      d = Duration.new(:seconds => 14)
+      assert_equal "14″", d.format("%SP")
+    end
+
+    it "uses a UTF-8 prime for seconds" do
+      d = Duration.new(:minutes => 21)
+      assert_equal "21′", d.format("%MP")
+    end
+
+    it "uses a HTML double prime for seconds" do
+      d = Duration.new(:seconds => 14)
+      assert_equal "14&#8243;", d.format("%SH")
+    end
+
+    it "uses a HTML prime for seconds" do
+      d = Duration.new(:minutes => 21)
+      assert_equal "21&#8242;", d.format("%MH")
+    end
+  end
+
   describe "creation from iso_8601" do
     it "should work" do
       assert_equal 60, Duration.new("PT1M").to_i
