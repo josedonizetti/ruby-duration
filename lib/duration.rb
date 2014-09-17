@@ -90,18 +90,22 @@ class Duration
   # Formats a duration in ISO8601.
   # @see http://en.wikipedia.org/wiki/ISO_8601#Durations
   def iso8601
-    output = 'P'
+    if present?
+      output = 'P'
 
-    number_of_days = weeks * 7 + days
-    output << "#{number_of_days}D" if number_of_days > 0
-    if seconds > 0 || minutes > 0 || hours > 0
-      output << 'T'
-      output << "#{hours}H" if hours > 0
-      output << "#{minutes}M" if minutes > 0
-      output << "#{seconds}S" if seconds > 0
+      number_of_days = weeks * 7 + days
+      output << "#{number_of_days}D" if number_of_days > 0
+      if seconds > 0 || minutes > 0 || hours > 0
+        output << 'T'
+        output << "#{hours}H" if hours > 0
+        output << "#{minutes}M" if minutes > 0
+        output << "#{seconds}S" if seconds > 0
+      end
+
+      negative? ? "-#{output}" : output
+    else
+      'PT0S'
     end
-
-    output
   end
 
   # @return true if total is 0
@@ -112,6 +116,10 @@ class Duration
   # @return true if total different than 0
   def present?
     !blank?
+  end
+
+  def negative?
+    @negative
   end
 
   # Format a duration into a human-readable string.
@@ -210,7 +218,8 @@ private
   def calculate!
     multiples = [MULTIPLES[:weeks], MULTIPLES[:days], MULTIPLES[:hours], MULTIPLES[:minutes], MULTIPLES[:seconds]]
     units     = []
-    @total    = @seconds.to_f.round
+    @negative = @seconds < 0
+    @total    = @seconds.abs.to_f.round
     multiples.inject(@total) do |total, multiple|
       # Divide into largest unit
       units << total / multiple
