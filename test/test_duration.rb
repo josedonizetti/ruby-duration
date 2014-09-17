@@ -201,6 +201,18 @@ describe "Duration" do
       assert_equal "PT1H30S", d.iso8601
     end
 
+    it 'should format empty duration' do
+      d = Duration.new(0)
+      assert_equal 'PT0S', d.iso8601
+    end
+
+    it 'should format negative duration' do
+      d = Duration.new(-1)
+      assert_equal '-PT1S', d.iso8601
+
+      d = Duration.new(-100)
+      assert_equal '-PT1M40S', d.iso8601
+    end
   end
 
   describe "utilities methods" do
