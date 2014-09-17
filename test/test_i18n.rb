@@ -9,6 +9,10 @@ describe "I18n" do
       I18n.locale = :pt
     end
 
+    after do
+      I18n.locale = :en
+    end
+
     it "should translate to segundo" do
       assert_equal "segundo", Duration.new(:second => 1).format("%~s")
     end
