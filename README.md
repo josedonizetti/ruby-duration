@@ -4,9 +4,8 @@ ruby-duration
 Duration is an immutable type that represents some amount of time with accuracy in seconds.
 
 A lot of the code and inspirations is borrowed from [duration](http://rubyforge.org/projects/duration) 
-lib, which is a **mutable** Duration type with lot more features but lack of tests.
+lib, which is a **mutable** Duration type with lot more features.
 
-I'll try to contact the author of duration to make ruby-duration version 2 of duration's lib. ;)
 
 
 Features
@@ -32,7 +31,7 @@ Show me the code
     Duration.new(:weeks => 3, :days => 1).format("%w %~w and %d %~d") => "3 weeks and 1 day"
     Duration.new(:weeks => 1, :days => 20).format("%w %~w and %d %~d") => "3 weeks and 6 days"
 
-### iso 8601 [more info](http://en.wikipedia.org/wiki/ISO_8601#Durations)
+### [iso 8601](http://en.wikipedia.org/wiki/ISO_8601#Durations)
 
     Duration.new(:weeks => 1, :days => 20).iso8601 => "P3W6DT0H0M0S"
 
