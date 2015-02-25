@@ -1,5 +1,6 @@
 # -*- encoding:  utf-8 -*-
 require 'i18n'
+require 'active_support'
 require 'active_support/core_ext'
 require 'iso8601'
 
