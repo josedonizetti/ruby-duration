@@ -1,5 +1,8 @@
 # -*- encoding:  utf-8 -*-
-require 'helper'
+#require 'helper'
+
+require 'minitest/autorun'
+require_relative '../lib/duration'
 
 describe "Duration" do
   it "should initialize given duration in seconds" do
@@ -39,26 +42,40 @@ describe "Duration" do
     it "should +" do
       assert_equal Duration.new(15), Duration.new(10) + 5
       assert_equal Duration.new(15), Duration.new(10) + Duration.new(5)
+      assert_equal Duration.new(5), Duration.new(10) + Duration.new(-5)
     end
 
     it "should -" do
       assert_equal Duration.new(5), Duration.new(10) - 5
       assert_equal Duration.new(5), Duration.new(10) - Duration.new(5)
+      assert_equal Duration.new(15), Duration.new(10) - Duration.new(-5)
+      assert_equal Duration.new(-15), Duration.new(-10) - Duration.new(5)
+      assert_equal Duration.new(-5), Duration.new(-10) - Duration.new(-5)
     end
 
     it "should *" do
       assert_equal Duration.new(20), Duration.new(10) * 2
       assert_equal Duration.new(20), Duration.new(10) * Duration.new(2)
+      assert_equal Duration.new(-20), Duration.new(10) * Duration.new(-2)
+      assert_equal Duration.new(20), Duration.new(-10) * Duration.new(-2)
     end
 
     it "should /" do
       assert_equal Duration.new(5), Duration.new(10) / 2
       assert_equal Duration.new(5), Duration.new(10) / Duration.new(2)
+      assert_equal Duration.new(-5), Duration.new(10) / Duration.new(-2)
+      assert_equal Duration.new(-5), Duration.new(-10) / Duration.new(2)
+      assert_equal Duration.new(5), Duration.new(-10) / Duration.new(-2)
     end
 
     it "should %" do
       assert_equal Duration.new(1), Duration.new(10) % 3
       assert_equal Duration.new(1), Duration.new(10) % Duration.new(3)
+      assert_equal Duration.new(-2), Duration.new(10) % -3
+      assert_equal Duration.new(-2), Duration.new(10) % Duration.new(-3)
+      assert_equal Duration.new(-2), Duration.new(-10) % 3
+      assert_equal Duration.new(-2), Duration.new(-10) % Duration.new(3)
+      assert_equal Duration.new(-1), Duration.new(-10) % Duration.new(-3)
     end
   end
 
