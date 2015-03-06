@@ -3,7 +3,7 @@ ruby-duration
 
 Duration is an immutable type that represents some amount of time with accuracy in seconds.
 
-A lot of the code and inspirations is borrowed from [duration](http://rubyforge.org/projects/duration) 
+A lot of the code and inspirations is borrowed from [duration](http://rubyforge.org/projects/duration)
 lib, which is a **mutable** Duration type with lot more features.
 
 
@@ -41,15 +41,17 @@ For lower Mongoid versions try:
  * < 3.0.0 tag [v2.1.4](https://github.com/peleteiro/ruby-duration/tree/v2.1.4)
  * < 2.1.0 tag [v1.0.0](https://github.com/peleteiro/ruby-duration/tree/v1.0.0)
 
+```
     require 'duration/mongoid'
 
     class MyModel
       include Mongoid::Document
       field :duration, type => Duration
     end
+```
 
 ### Dependencies
-The current version of this gem runs only on Ruby Versions >= 1.9.3. 
+The current version of this gem runs only on Ruby Versions >= 1.9.3.
 If you are running a older version of Ruby try:
 * tag [v2.1.4](https://github.com/peleteiro/ruby-duration/tree/v2.1.4)
 
