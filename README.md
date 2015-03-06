@@ -41,9 +41,9 @@ For lower Mongoid versions try:
  * < 3.0.0 tag [v2.1.4](https://github.com/peleteiro/ruby-duration/tree/v2.1.4)
  * < 2.1.0 tag [v1.0.0](https://github.com/peleteiro/ruby-duration/tree/v1.0.0)
 
+```
     require 'duration/mongoid'
 
-```
     class MyModel
       include Mongoid::Document
       field :duration, type => Duration
