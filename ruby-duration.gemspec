@@ -14,7 +14,6 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "ruby-duration"
 
-  s.add_dependency "activesupport", ">= 3.0.0"
   s.add_dependency "i18n", ">= 0"
   s.add_dependency "iso8601", ">= 0"
 
