@@ -1,4 +1,5 @@
 require "#{File.dirname(__FILE__)}/../duration"
+require "mongoid"
 require "mongoid/fields"
 
 # Mongoid serialization support for Duration type.
