@@ -22,7 +22,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency "bundler", ">= 1.0.0"
   s.add_development_dependency "minitest", ">= 0"
   s.add_development_dependency "yard", ">= 0"
-  s.add_development_dependency "rake", ">= 0"
+  # Yard doesn't support Rake 11 currently.
+  s.add_development_dependency "rake", "< 11.0"
   s.add_development_dependency "simplecov", ">= 0.3.5"
   s.add_development_dependency "mongoid", ">= 3.0.0", "< 4.0.0"
 
