@@ -34,6 +34,7 @@ Show me the code
 ### [iso 8601](http://en.wikipedia.org/wiki/ISO_8601#Durations)
 
     Duration.new(:weeks => 1, :days => 20).iso8601 => "P3W6DT0H0M0S"
+    Duration.new("P6DT5S") => #<Duration: days=6, seconds=5, total=518405>
 
 ### Mongoid support
 The current version of this gem supports Mongoid >= [3.0.0](https://github.com/mongoid/mongoid).
