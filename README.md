@@ -6,7 +6,10 @@ Duration is an immutable type that represents some amount of time with accuracy 
 A lot of the code and inspirations is borrowed from [duration](http://rubyforge.org/projects/duration)
 lib, which is a **mutable** Duration type with lot more features.
 
+Help Wanted!
+============
 
+I don't use ruby neither ruby-duration on my daily basis. If you use ruby-duration and want to become the new owner, let me know.
 
 Features
 --------
