@@ -11,6 +11,8 @@ Help Wanted!
 
 If you use ruby-duration and want to take over the project, let me know.
 
+[![Maintainers Wanted](https://img.shields.io/badge/maintainers-wanted-red.svg)](https://github.com/pickhardt/maintainers-wanted)
+
 Features
 --------
 
