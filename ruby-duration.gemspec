@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.licenses    = ['MIT']
   s.authors     = ["Jose Peleteiro", "Bruno Azisaka Maciel"]
   s.email       = ["jose@peleteiro.net", "bruno@azisaka.com.br"]
-  s.homepage    = "http://github.com/peleteiro/ruby-duration"
+  s.homepage    = "https://github.com/josedonizetti/ruby-duration"
   s.summary     = "Duration type"
   s.description = "Duration type"
 
