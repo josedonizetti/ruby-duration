@@ -13,7 +13,6 @@ Gem::Specification.new do |s|
   s.description = "Duration type"
 
   s.required_rubygems_version = ">= 1.3.6"
-  s.rubyforge_project         = "ruby-duration"
 
 
   s.add_dependency "activesupport", ">= 3.0.0"
