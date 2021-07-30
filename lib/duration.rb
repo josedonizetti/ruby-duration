@@ -64,23 +64,33 @@ class Duration
   end
 
   def +(other)
-    Duration.new(@total + other.to_i)
+    total = negative? ? -@total : @total
+    if other.class == Duration then other = other.negative? ? -other.total : other.total end
+    Duration.new(total + other.to_i)
   end
 
   def -(other)
-    Duration.new(@total - other.to_i)
+    total = negative? ? -@total : @total
+    if other.class == Duration then other = other.negative? ? -other.total : other.total end
+    Duration.new(total - other.to_i)
   end
 
   def *(other)
-    Duration.new(@total * other.to_i)
+    total = negative? ? -@total : @total
+    if other.class == Duration then other = other.negative? ? -other.total : other.total end
+    Duration.new(total * other.to_i)
   end
 
   def /(other)
-    Duration.new(@total / other.to_i)
+    total = negative? ? -@total : @total
+    if other.class == Duration then other = other.negative? ? -other.total : other.total end
+    Duration.new(total / other.to_i)
   end
 
   def %(other)
-    Duration.new(@total % other.to_i)
+    total = negative? ? -@total : @total
+    if other.class == Duration then other = other.negative? ? -other.total : other.total end
+    Duration.new(total % other.to_i)
   end
 
   %w(minutes hours days).each do |meth|
